@@ -1,0 +1,13 @@
+
+/
+F:
+usr/
+F:/
+bajs/
+F:/usr/
+local/
+F:/
+quq/
+F:/
+fittaMitBluud/
+F:/quq/

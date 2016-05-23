@@ -1,0 +1,6 @@
+﻿  FileStructure.cpp
+c:\users\jozef\desktop\bögjozef\labb4newest\filestructure.cpp(160): warning C4018: '<': signed/unsigned mismatch
+c:\users\jozef\desktop\bögjozef\labb4newest\filestructure.cpp(173): warning C4018: '<': signed/unsigned mismatch
+c:\users\jozef\desktop\bögjozef\labb4newest\filestructure.cpp(246): warning C4018: '<': signed/unsigned mismatch
+c:\users\jozef\desktop\bögjozef\labb4newest\filestructure.cpp(207): warning C4715: 'Directory::findDirectory': not all control paths return a value
+  labbRealtidMaj.vcxproj -> C:\Users\jozef\Desktop\Bögjozef\labbRealtidMaj\Debug\labbRealtidMaj.exe
