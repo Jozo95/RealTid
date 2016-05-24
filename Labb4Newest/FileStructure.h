@@ -42,6 +42,7 @@ public:
 	bool enterDirectory(const std::string &path);
 	int getCounter();
 	void recurs(vector<Directory> vec, ofstream &fileStream, string &path);
+	void recurs(vector<File> vec, ofstream &fileStream, string &path);
 	void loadSystem(ifstream &fileStream);
     virtual ~Directory();
 };

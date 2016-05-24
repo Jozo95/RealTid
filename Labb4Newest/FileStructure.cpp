@@ -29,34 +29,26 @@ int File::getBlockNr() const
 	return this->blockNr;
 }
 
-bool Directory::addFile(const std::string &path, std::string &name, int blockNr)
-{
-
-
-	//vector<Directory> root = this->directories;
-	//vector<Directory> temp;
-
-	//temp = findDirectory(path, 2);
-	////vector<Directory> *temptemp = new vector<Directory>(*this->directories);
-
-
-
-	//
-	//temp.at(currentPos).files.push_back(File(name, blockNr));
-
-	//directories = root;
-
-	////Directory hej = this->directories[0].directories[0].directories[0];	
-	//cout << " ADded FILE !!! " << endl;
-
-	//pathExists = false;
-
-	return true;
-}
 
 /*
 Directory-class
 */
+
+bool Directory::addFile(const std::string &path, std::string &name, int blockNr)
+{
+	//pathExists = false;
+	Directory *tempPtr;
+	File newFile(name, blockNr);
+	tempPtr = findDirectory(path, this->directories);
+	if (pathExists == true) {
+		tempPtr->files.push_back(newFile);
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
   
 Directory::Directory()
 {
@@ -105,25 +97,28 @@ string Directory::printAll(std::string &currDir) {
 	
 	//cout << "DIR: " << Directory(root).getName(); << endl;
 	string all = "";
-	for (int i = 0; i < root->getCounter() ; i++){
+	for (int i = 0; i < root->directories.size() ; i++){
 		all = all + "\n" + root->directories.at(i).getName();
-	}	
+	}
+	for (int i = 0; i < root->files.size(); i++) {
+		all = all + "\n" + root->files.at(i).getName();
+	}
 
 	return all;
 }
 
 int Directory::getFileText(const std::string &path, std::string fileName)
 {
-	//vector<Directory> tempPtr;
+	Directory* tempPtr;
 
 
-	//tempPtr = findDirectory(path, 2);
-	//for (int i = 0; i < tempPtr.at(currentPos).files.size(); i++){
-	//	if (tempPtr.at(currentPos).files.at(i).getName() == fileName)
-	//	{
-	//		return int(tempPtr.at(currentPos).files.at(i).getBlockNr());
-	//	}
-	//}
+	tempPtr = findDirectory(path, this->directories);
+	for (int i = 0; i < tempPtr->files.size(); i++){
+		if (tempPtr->files.at(i).getName() == fileName)
+		{
+			return int(tempPtr->files.at(i).getBlockNr());
+		}
+	}
 	return -1;
 }
     	
@@ -136,7 +131,7 @@ bool Directory::addDirectory(const std::string &path, std::string &dirName) {
 	Directory *tempPtr;
 	tempPtr = findDirectory(path, this->directories);
 	if (pathExists == true) {
-		tempPtr->directories.push_back(dirName);
+		tempPtr->directories.push_back(dirName+"/");
 		tempPtr->counter++;
 		return true;
 	}
@@ -154,7 +149,7 @@ Directory* Directory::findDirectory(const std::string &path, vector<Directory> &
 	vector<Directory> *secWalker = nullptr;
 	vector<Directory> *walker = nullptr;
 	walker = &this->directories;
-	Directory *dir;
+	Directory *dir = nullptr;
 	string pathFound = "";
 
 	for (int i = 0; i < path.length(); i++)
@@ -202,8 +197,6 @@ Directory* Directory::findDirectory(const std::string &path, vector<Directory> &
 			}
 		}
 	}
-
-	
 }
 
 bool Directory::enterDirectory(const std::string &path)
@@ -221,18 +214,18 @@ bool Directory::enterDirectory(const std::string &path)
 }
 
 bool Directory::removeFile(const std::string &path, std::string &name, int blockNr){
-	vector<Directory> tempPtr;
+	Directory* tempPtr;
 
 
-	//tempPtr = findDirectory(path, 2);
-	//for (int i = 0; i < tempPtr.at(currentPos).files.size(); i++){
-	//	if (tempPtr.at(currentPos).files.at(i).getName() == name)
-	//	{
-	//		File l = tempPtr.at(currentPos).files.at(i);
-	//		tempPtr.at(currentPos).files.erase(tempPtr.at(currentPos).files.begin() + i);
-	//		return true;
-	//	}
-	//}
+	tempPtr = findDirectory(path, this->directories);
+	for (int i = 0; i < tempPtr->files.size(); i++){
+		if (tempPtr->files.at(i).getName() == name)
+		{
+			File l = tempPtr->files.at(i);
+			tempPtr->files.erase(tempPtr->files.begin() + i);
+			return true;
+		}
+	}
 	return false;
 }
 
