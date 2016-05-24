@@ -15,43 +15,43 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Labb4Newest\block.h">
+    <ClCompile Include="..\Labb4Newest\filesystem.cpp">
       <Filter>Resource Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Labb4Newest\blockdevice.h">
+    </ClCompile>
+    <ClCompile Include="..\Labb4Newest\memblockdevice.cpp">
       <Filter>Resource Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Labb4Newest\File.h">
+    </ClCompile>
+    <ClCompile Include="..\Labb4Newest\shell.cpp">
       <Filter>Resource Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Labb4Newest\FileStructure.h">
+    </ClCompile>
+    <ClCompile Include="..\Labb4Newest\block.cpp">
       <Filter>Resource Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Labb4Newest\filesystem.h">
+    </ClCompile>
+    <ClCompile Include="..\Labb4Newest\blockdevice.cpp">
       <Filter>Resource Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Labb4Newest\memblockdevice.h">
+    </ClCompile>
+    <ClCompile Include="..\Labb4Newest\FileStructure.cpp">
       <Filter>Resource Files</Filter>
-    </ClInclude>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Labb4Newest\blockdevice.cpp">
+    <ClInclude Include="..\Labb4Newest\filesystem.h">
       <Filter>Resource Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Labb4Newest\FileStructure.cpp">
+    </ClInclude>
+    <ClInclude Include="..\Labb4Newest\memblockdevice.h">
       <Filter>Resource Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Labb4Newest\filesystem.cpp">
+    </ClInclude>
+    <ClInclude Include="..\Labb4Newest\block.h">
       <Filter>Resource Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Labb4Newest\memblockdevice.cpp">
+    </ClInclude>
+    <ClInclude Include="..\Labb4Newest\blockdevice.h">
       <Filter>Resource Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Labb4Newest\shell.cpp">
+    </ClInclude>
+    <ClInclude Include="..\Labb4Newest\File.h">
       <Filter>Resource Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Labb4Newest\block.cpp">
+    </ClInclude>
+    <ClInclude Include="..\Labb4Newest\FileStructure.h">
       <Filter>Resource Files</Filter>
-    </ClCompile>
+    </ClInclude>
   </ItemGroup>
 </Project>

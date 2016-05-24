@@ -18,6 +18,22 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Labb4Newest\block.cpp" />
+    <ClCompile Include="..\Labb4Newest\blockdevice.cpp" />
+    <ClCompile Include="..\Labb4Newest\FileStructure.cpp" />
+    <ClCompile Include="..\Labb4Newest\filesystem.cpp" />
+    <ClCompile Include="..\Labb4Newest\memblockdevice.cpp" />
+    <ClCompile Include="..\Labb4Newest\shell.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Labb4Newest\block.h" />
+    <ClInclude Include="..\Labb4Newest\blockdevice.h" />
+    <ClInclude Include="..\Labb4Newest\File.h" />
+    <ClInclude Include="..\Labb4Newest\FileStructure.h" />
+    <ClInclude Include="..\Labb4Newest\filesystem.h" />
+    <ClInclude Include="..\Labb4Newest\memblockdevice.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{1C08C576-9284-40F0-916B-5BECCBF9B9F0}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
@@ -145,22 +161,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\Labb4Newest\block.h" />
-    <ClInclude Include="..\..\Labb4Newest\blockdevice.h" />
-    <ClInclude Include="..\..\Labb4Newest\File.h" />
-    <ClInclude Include="..\..\Labb4Newest\FileStructure.h" />
-    <ClInclude Include="..\..\Labb4Newest\filesystem.h" />
-    <ClInclude Include="..\..\Labb4Newest\memblockdevice.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\Labb4Newest\block.cpp" />
-    <ClCompile Include="..\..\Labb4Newest\blockdevice.cpp" />
-    <ClCompile Include="..\..\Labb4Newest\FileStructure.cpp" />
-    <ClCompile Include="..\..\Labb4Newest\filesystem.cpp" />
-    <ClCompile Include="..\..\Labb4Newest\memblockdevice.cpp" />
-    <ClCompile Include="..\..\Labb4Newest\shell.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

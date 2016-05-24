@@ -1,0 +1,3 @@
+﻿  FileStructure.cpp
+c:\users\nix\documents\github\realtid\labb4newest\filestructure.cpp(200): warning C4715: 'Directory::findDirectory': not all control paths return a value
+  labbRealtidMaj.vcxproj -> C:\Users\Nix\Documents\GitHub\RealTid\x64\Debug\labbRealtidMaj.exe

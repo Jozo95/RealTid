@@ -123,7 +123,7 @@ int main(void) {
 					std::cout << "Going back directory...\n";
 				}
 				else if (fileSystem.cd(subStr)) {
-					//name = userCommand.substr(3, userCommand.length() - 3);
+					name = userCommand.substr(3, userCommand.length() - 3);
 					currentDir = subStr;
 					std::cout << "Entering directory...\n" << endl;
 				}

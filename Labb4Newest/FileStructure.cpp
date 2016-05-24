@@ -235,19 +235,32 @@ void Directory::recurs(vector<Directory> vec, ofstream &fileStream, string &path
 	vector<Directory> temp = vec;
 	string pathBefore = path;
 	//std::cout << "SIZE " << temp.size
-
+	bool fileInFirst = false;
 	for (int i = 0; i < temp.size(); i++){
 		if (touchedEndl) {
-			fileStream << endl <<  temp.at(i).getName();
+			if(fileInFirst)
+				fileStream <<  temp.at(i).getName();
+			else
+				fileStream << endl << temp.at(i).getName();
 			fileStream << endl << "F:" + path;
+			for (int k = 0; k < temp.at(i).files.size(); k++) {
+				fileStream << endl << "File:" + temp.at(i).files.at(k).getName();
+				fileStream << endl << temp.at(i).files.at(k).getBlockNr();
+
+			}
 			path = path + temp.at(i).getName();
 			recurs(temp.at(i).directories, fileStream, path);
 			path = pathBefore;
 		}
 		else {
 			touchedEndl = true;
-			fileStream << temp.at(i).getName() << endl;;
+			fileStream << temp.at(i).getName() << endl;
 			fileStream << "F:" + path;
+			for (int k = 0; k < temp.at(i).files.size(); k++) {
+				fileStream << endl << "File:" + temp.at(i).files.at(k).getName() << endl;
+				fileInFirst = true;
+				fileStream << temp.at(i).files.at(k).getBlockNr();
+			}
 			path = path + temp.at(i).getName();
 			recurs(temp.at(i).directories, fileStream, path);
 			path = pathBefore;
@@ -271,15 +284,23 @@ void Directory::loadSystem(ifstream &fileStream) {
 	Directory *returned;
 	vector<Directory> root;
 	this->directories = root;
+	vector<File> rootFiles;
+	this->files = rootFiles;
+	//apeka dir till ny files?
 	string path = "";
 	int counter = 0;
-	string dirName, filePath;
-
-
+	string dirName, filePath, fileName;
+	int memBlockNr;
+	bool copiedDirName = false;
 
 	while (!fileStream.eof()) {
 		filePath = "";
-		fileStream >> dirName;
+		if (!copiedDirName) {
+			fileStream >> dirName;
+		}
+		else {
+			dirName = fileName;
+		}
 		fileStream >> filePath;
 		if (filePath.size() == 2) {
 			cout << "Empty path found" << endl;
@@ -301,13 +322,29 @@ void Directory::loadSystem(ifstream &fileStream) {
 		if (counter == 0) {
 			//returned = findDirectory(filePath, this->directories);
 			directories.push_back(Directory(dirName));
-			
+			fileStream >> fileName;
+			while (fileName.substr(0,5) == "File:") {
+				fileStream >> memBlockNr;
+				directories.at(0).files.push_back(File((fileName.substr(5, fileName.size())), memBlockNr));
+				fileStream >> fileName;
+			}
+			copiedDirName = true;
 			//directories.at(temp.size() - 1).directories = new vector<Directory>();
 
 		}
 		else {
 			returned = findDirectory(filePath, this->directories);
 			returned->directories.push_back(Directory(dirName));
+			fileStream >> fileName;
+			while (fileName.substr(0, 5) == "File:") {
+				fileStream >> memBlockNr;
+
+				std::cout << fileName.substr(5, fileName.size()) << std::endl;
+
+				returned->files.push_back(File((fileName.substr(5,fileName.size())), memBlockNr));
+				fileStream >> fileName;
+			}
+			copiedDirName = true;
 			returned->counter++;
 			//returned.at(returned.size() - 1).directories = new vector<Directory>();
 
