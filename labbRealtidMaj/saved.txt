@@ -1,10 +1,10 @@
 /
 F:
-File:aa
-0
 usr/
 F:/
 bajs/
+F:/usr/
+korr/
 F:/usr/
 local/
 F:/

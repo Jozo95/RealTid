@@ -28,17 +28,17 @@ public:
 	std::string create(const std::string &filePath, std::string name, std::string content);// Klar
     
 	std::string cat(std::string &fileName, std::string filePath); // Klar
-    std::string save(const std::string &saveFile);
-    std::string read(const std::string &saveFile);
+    std::string save(const std::string &saveFile); //klar
+    std::string read(const std::string &saveFile); //klar
     std::string rm(const std::string &filePath , std::string &fileName); //klar
 	std::string mkdir(const std::string &path, std::string &name);// Klar
-    std::string copy(const std::string &source, const std::string &dest);
+    std::string copy(const std::string &currDir,const std::string &source, const std::string &dest, const std::string &name);
 
     /* Optional */
     std::string append(const std::string &source, const std::string &app);
     std::string rename(const std::string &source, const std::string &newName);
     std::string chmod(int permission, const std::string &file);
-    std::string findDirectory(std::string quq);
+    std::string findDirectory(std::string path);
 	bool cd(std::string &path);// Klar
 	std::string save2(const std::string &saveFile);
 

@@ -33,13 +33,24 @@ int File::getBlockNr() const
 /*
 Directory-class
 */
-
-bool Directory::addFile(const std::string &path, std::string &name, int blockNr)
+int Directory::copy(const std::string &currDir, const std::string &source, const std::string &dest, const std::string &name) {
+	Directory *tempPtr;
+	//File newFile(name, blockNr);
+	tempPtr = findDirectory(currDir, this->directories);
+	for (int i = 0; i < tempPtr->files.size(); i++) {
+		if (source == tempPtr->files.at(i).getName()) {
+			return tempPtr->files.at(i).getBlockNr();
+			
+		}
+	}
+	return -1;
+}
+bool Directory::addFile(const std::string &currDir, std::string &name, int blockNr)
 {
 	//pathExists = false;
 	Directory *tempPtr;
 	File newFile(name, blockNr);
-	tempPtr = findDirectory(path, this->directories);
+	tempPtr = findDirectory(currDir, this->directories);
 	if (pathExists == true) {
 		tempPtr->files.push_back(newFile);
 		return true;
@@ -48,6 +59,17 @@ bool Directory::addFile(const std::string &path, std::string &name, int blockNr)
 		return false;
 	}
 }
+
+bool Directory::format()
+{
+	vector<Directory> newRoot;
+	this->directories = newRoot;
+	vector<File> newFileRoot;
+	this->files = newFileRoot;
+	this->directories.push_back(Directory("/"));
+	return true;
+}
+
 
   
 Directory::Directory()
@@ -303,22 +325,18 @@ void Directory::loadSystem(ifstream &fileStream) {
 		}
 		fileStream >> filePath;
 		if (filePath.size() == 2) {
-			cout << "Empty path found" << endl;
 			filePath = "/";
 		}
 		else {
 			if (!filePath.size() == 0) {
 				if (filePath.size() > 4) {
-					cout << filePath << endl;
 					filePath = filePath.substr(2, filePath.length() - 2);
 				}
 				else {
-					cout << filePath << endl;
 					filePath = filePath.substr(2, filePath.length() - 2);
 				}
 			}
 		}
-		cout << "Dir name:" <<  dirName << endl << "FilePath:" << filePath << endl;
 		if (counter == 0) {
 			//returned = findDirectory(filePath, this->directories);
 			directories.push_back(Directory(dirName));
@@ -339,8 +357,6 @@ void Directory::loadSystem(ifstream &fileStream) {
 			while (fileName.substr(0, 5) == "File:") {
 				fileStream >> memBlockNr;
 
-				std::cout << fileName.substr(5, fileName.size()) << std::endl;
-
 				returned->files.push_back(File((fileName.substr(5,fileName.size())), memBlockNr));
 				fileStream >> fileName;
 			}
@@ -353,6 +369,4 @@ void Directory::loadSystem(ifstream &fileStream) {
 
 		counter++;
 	}
-
-	cout << "rREMOVED ALL BITCHES" << counter << endl;
 }

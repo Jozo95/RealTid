@@ -29,10 +29,12 @@ private:
 	bool touchedEndl;
 	int currentPos;
 public:
+	bool format();
 	Directory();
 	Directory(string name);
 	string getName() const;
 	void save(ofstream &fileStream);
+	int copy(const std::string &currDir, const std::string &source, const std::string &dest, const std::string &name);
 	string printAll(std::string &currDir);
 	bool addDirectory(const std::string &path, std::string &dirName);
 	bool addFile(const std::string &path, std::string &name, int blockNr);

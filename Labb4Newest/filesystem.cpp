@@ -10,13 +10,23 @@ mMemblockDevice = MemBlockDevice(250);
 }
 
 string FileSystem::format() {
-	return "1";
+	root.format();
+	return "Formated";
 }
 
 string FileSystem::ls(std::string currDir)
 {
 	string all = this->root.printAll(currDir);
 	return all;
+}
+
+std::string FileSystem::copy(const std::string &currDir, const std::string &source, const std::string &dest, const std::string &name) {
+	int blockNr = root.copy(currDir, source, dest, name);
+	if (-1 != blockNr) {
+		string q  = (mMemblockDevice.readBlock(blockNr).toString().substr(0,7));
+		create(dest, name, q);
+	}
+	return "ok";
 }
 
 std::string FileSystem::create(const std::string & filePath, std::string name, std::string content)
@@ -82,7 +92,7 @@ std::string FileSystem::save(const std::string &saveFile)
 
 std::string FileSystem::read(const std::string &saveFile) {
 
-	ifstream quq("saved.txt");
-	root.loadSystem(quq);
+	ifstream read("saved.txt");
+	root.loadSystem(read);
 	return "ok";
 }

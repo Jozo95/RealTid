@@ -2,6 +2,7 @@
 #include <sstream>
 #include "filesystem.h"
 #include <crtdbg.h>
+#include <regex>
 const int MAXCOMMANDS = 8;
 const int NUMAVAILABLECOMMANDS = 15;
 
@@ -93,6 +94,29 @@ int main(void) {
                 break;
 
             case 8: // copy
+			{
+				std::smatch m;
+				std::regex e("copy ([a-z]*) ([a-z/]*)|[/][a-z]*");
+				std::regex se("[/][a-z]*");
+				string q, w, r, c, s;
+				s = userCommand;
+				while (std::regex_search (s, m, e)) {
+					for (auto x : m) //std::cout << x << " ";
+					q = m[1].str();
+					w = m[2].str();
+					c =  w;
+					s = m.suffix().str();
+				}
+				while (std::regex_search(c, m, se)) {
+					for (auto x : m) //std::cout << x << " ";
+					r = m[0].str();
+					c = m.suffix().str();
+				}
+				cout << "R:" << r << endl;
+				r = r.substr(1, r.length() - 1);
+				w = w.substr(0, w.length() - r.length());
+				fileSystem.copy(currentDir, q, w, r);
+			}
 
                 break;
 
@@ -191,13 +215,13 @@ std::string help() {
     helpStr += "OSD Disk Tool .oO Help Screen Oo.\n";
     helpStr += "-----------------------------------------------------------------------------------\n" ;
     helpStr += "* quit:                             Quit OSD Disk Tool\n";// Klar
-    helpStr += "* format;                           Formats disk\n";
+    helpStr += "* format;                           Formats disk\n";//Klar
     helpStr += "* ls     <path>:                    Lists contents of <path>.\n";// Klar
     helpStr += "* create <path>:                    Creates a file and stores contents in <path>\n"; // Klar
     helpStr += "* cat    <path>:                    Dumps contents of <file>.\n"; // Klar
     helpStr += "* save   <real-file>:               Saves disk to <real-file>\n";
     helpStr += "* read   <real-file>:               Reads <real-file> onto disk\n";
-    helpStr += "* rm     <file>:                    Removes <file>\n";
+    helpStr += "* rm     <file>:                    Removes <file>\n"; 
     helpStr += "* copy   <source>    <destination>: Copy <source> to <destination>\n";
     helpStr += "* append <source>    <destination>: Appends contents of <source> to <destination>\n";
     helpStr += "* rename <old-file>  <new-file>:    Renames <old-file> to <new-file>\n";
