@@ -49,7 +49,8 @@ int main(void) {
 
         int nrOfCommands = parseCommandString(userCommand, commandArr);
         if (nrOfCommands > 0) {
-
+			if (currentDir == "")
+				currentDir = "/";
             int cIndex = findCommand(commandArr[0]);
             switch(cIndex) {
 
