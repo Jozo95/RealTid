@@ -82,18 +82,18 @@ Directory::Directory()
 	this->directories.push_back(Directory("/"));
 	//this->directories.at(0).directories = new vector<Directory>();
 
-	counter++;
-	counter++;
-	this->directories.at(0).directories.push_back(Directory("usr/"));
-	//this->directories.at(0).directories.at(0).directories = new vector<Directory>();
-	this->directories.at(0).directories.at(0).counter++;
-	this->directories.at(0).directories.at(0).directories.push_back(Directory("deep/"));
-	//this->directories.at(0).directories.at(0).directories.at(0).directories = new vector<Directory>();
+	//counter++;
+	//counter++;
+	//this->directories.at(0).directories.push_back(Directory("usr/"));
+	////this->directories.at(0).directories.at(0).directories = new vector<Directory>();
 	//this->directories.at(0).directories.at(0).counter++;
-	this->directories.at(0).counter++;
-	this->directories.at(0).directories.push_back(Directory("local/"));
-	//this->directories.at(0).directories.at(1).directories = new vector<Directory>();
-	this->directories.at(0).counter++;
+	//this->directories.at(0).directories.at(0).directories.push_back(Directory("deep/"));
+	////this->directories.at(0).directories.at(0).directories.at(0).directories = new vector<Directory>();
+	////this->directories.at(0).directories.at(0).counter++;
+	//this->directories.at(0).counter++;
+	//this->directories.at(0).directories.push_back(Directory("local/"));
+	////this->directories.at(0).directories.at(1).directories = new vector<Directory>();
+	//this->directories.at(0).counter++;
 }  
   
 Directory::Directory(string name)
