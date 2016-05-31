@@ -36,7 +36,7 @@ Directory-class
 int Directory::copy(const std::string &currDir, const std::string &source, const std::string &dest, const std::string &name) {
 	Directory *tempPtr;
 	//File newFile(name, blockNr);
-	tempPtr = findDirectory(currDir, this->directories);
+	tempPtr = findDirectory(currDir );
 	for (int i = 0; i < tempPtr->files.size(); i++) {
 		if (source == tempPtr->files.at(i).getName()) {
 			return tempPtr->files.at(i).getBlockNr();
@@ -50,7 +50,7 @@ bool Directory::addFile(const std::string &currDir, std::string &name, int block
 	//pathExists = false;
 	Directory *tempPtr;
 	File newFile(name, blockNr);
-	tempPtr = findDirectory(currDir, this->directories);
+	tempPtr = findDirectory(currDir );
 	if (pathExists == true) {
 		tempPtr->files.push_back(newFile);
 		return true;
@@ -87,7 +87,7 @@ Directory::Directory()
 	this->directories.at(0).directories.push_back(Directory("usr/"));
 	//this->directories.at(0).directories.at(0).directories = new vector<Directory>();
 	this->directories.at(0).directories.at(0).counter++;
-	this->directories.at(0).directories.at(0).directories.push_back(Directory("bajs/"));
+	this->directories.at(0).directories.at(0).directories.push_back(Directory("deep/"));
 	//this->directories.at(0).directories.at(0).directories.at(0).directories = new vector<Directory>();
 	//this->directories.at(0).directories.at(0).counter++;
 	this->directories.at(0).counter++;
@@ -113,7 +113,7 @@ int Directory::getCounter() {
 }
 
 string Directory::printAll(std::string &currDir) {
-	Directory *root = findDirectory(currDir, this->directories);
+	Directory *root = findDirectory(currDir );
 
 	//cout << "ANTALET:::" + root->getName();
 	
@@ -134,7 +134,7 @@ int Directory::getFileText(const std::string &path, std::string fileName)
 	Directory* tempPtr;
 
 
-	tempPtr = findDirectory(path, this->directories);
+	tempPtr = findDirectory(path );
 	for (int i = 0; i < tempPtr->files.size(); i++){
 		if (tempPtr->files.at(i).getName() == fileName)
 		{
@@ -151,7 +151,7 @@ Directory::~Directory()
 bool Directory::addDirectory(const std::string &path, std::string &dirName) {
 	//pathExists = false;
 	Directory *tempPtr;
-	tempPtr = findDirectory(path, this->directories);
+	tempPtr = findDirectory(path);
 	if (pathExists == true) {
 		tempPtr->directories.push_back(dirName+"/");
 		tempPtr->counter++;
@@ -163,7 +163,7 @@ bool Directory::addDirectory(const std::string &path, std::string &dirName) {
 	return false;
 }
 
-Directory* Directory::findDirectory(const std::string &path, vector<Directory> &myVector){
+Directory* Directory::findDirectory(const std::string &path){
 	string pathToFind = path;
 	int startPos = 0;
 	int endPos = 0;
@@ -225,7 +225,7 @@ bool Directory::enterDirectory(const std::string &path)
 {
 	pathExists = false;
 	Directory *tempPtr;
-	tempPtr = findDirectory(path, this->directories);
+	tempPtr = findDirectory(path );
 	if (pathExists == true) {
 		return true;
 	}
@@ -239,7 +239,7 @@ bool Directory::removeFile(const std::string &path, std::string &name, int block
 	Directory* tempPtr;
 
 
-	tempPtr = findDirectory(path, this->directories);
+	tempPtr = findDirectory(path );
 	for (int i = 0; i < tempPtr->files.size(); i++){
 		if (tempPtr->files.at(i).getName() == name)
 		{
@@ -338,7 +338,7 @@ void Directory::loadSystem(ifstream &fileStream) {
 			}
 		}
 		if (counter == 0) {
-			//returned = findDirectory(filePath, this->directories);
+			//returned = findDirectory(filePath );
 			directories.push_back(Directory(dirName));
 			fileStream >> fileName;
 			while (fileName.substr(0,5) == "File:") {
@@ -351,7 +351,7 @@ void Directory::loadSystem(ifstream &fileStream) {
 
 		}
 		else {
-			returned = findDirectory(filePath, this->directories);
+			returned = findDirectory(filePath);
 			returned->directories.push_back(Directory(dirName));
 			fileStream >> fileName;
 			while (fileName.substr(0, 5) == "File:") {

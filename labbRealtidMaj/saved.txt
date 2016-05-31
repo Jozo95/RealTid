@@ -2,9 +2,11 @@
 F:
 usr/
 F:/
-bajs/
+File:hej
+0
+deep/
 F:/usr/
-korr/
-F:/usr/
+File:tja
+1
 local/
 F:/

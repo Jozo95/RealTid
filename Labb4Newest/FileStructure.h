@@ -39,7 +39,7 @@ public:
 	bool addDirectory(const std::string &path, std::string &dirName);
 	bool addFile(const std::string &path, std::string &name, int blockNr);
 	bool removeFile(const std::string &path, std::string &name, int blockNr);
-	Directory* findDirectory(const std::string &path, vector<Directory> &myVector); // /hejsan/b/bla
+	Directory* findDirectory(const std::string &path); // /hejsan/b/bla
 	int getFileText(const std::string &path, std::string fileName);
 	bool enterDirectory(const std::string &path);
 	int getCounter();

@@ -30,8 +30,7 @@ std::string FileSystem::copy(const std::string &currDir, const std::string &sour
 }
 
 std::string FileSystem::create(const std::string & filePath, std::string name, std::string content)
-{
-	int counter = mMemblockDevice.counter;
+{	int counter = mMemblockDevice.counter;
 	this->root.addFile(filePath, name, counter);
 	content.resize(512);
 	cout << "conetent: " << content << endl;

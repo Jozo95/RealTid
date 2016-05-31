@@ -61,6 +61,7 @@ int main(void) {
                 // Call fileSystem.format()
                 std::cout << "Formated" << std::endl;
                 fileSystem.format();
+				currentDir = "/";
                 break;
             case 2: // ls
                 std::cout << "Listing directory" << std::endl;
@@ -145,6 +146,9 @@ int main(void) {
 					currentDir = sub;
 					//std::cout << "Substr" << subStr << endl;
 					std::cout << "Going back directory...\n";
+					if (currentDir == "") {
+						currentDir = "/";
+					}
 				}
 				else if (fileSystem.cd(subStr)) {
 					name = userCommand.substr(3, userCommand.length() - 3);
