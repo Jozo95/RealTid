@@ -341,6 +341,7 @@ void Directory::loadSystem(ifstream &fileStream) {
 			//returned = findDirectory(filePath );
 			directories.push_back(Directory(dirName));
 			fileStream >> fileName;
+			
 			while (fileName.substr(0,5) == "File:") {
 				fileStream >> memBlockNr;
 				directories.at(0).files.push_back(File((fileName.substr(5, fileName.size())), memBlockNr));
@@ -357,7 +358,8 @@ void Directory::loadSystem(ifstream &fileStream) {
 			while (fileName.substr(0, 5) == "File:") {
 				fileStream >> memBlockNr;
 
-				returned->files.push_back(File((fileName.substr(5,fileName.size())), memBlockNr));
+				returned->directories.at(returned->directories.size()-1).files.push_back(File((fileName.substr(5, fileName.size())), memBlockNr));
+				//returned->files.push_back(File((fileName.substr(5,fileName.size())), memBlockNr));
 				fileStream >> fileName;
 			}
 			copiedDirName = true;
